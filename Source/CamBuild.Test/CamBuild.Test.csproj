@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F13E2176-C48A-424B-94C7-E5772418C41D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CamBuild.Test</RootNamespace>
+    <AssemblyName>CamBuild.Test</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1591</NoWarn>
+    <DocumentationFile>bin\Debug\CamBuild.Test.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.2.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\NUnit\bin\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CamBuild.BasicActions\CopyFileTest.cs" />
+    <Compile Include="CamBuild.BasicActions\CreateDirectoryTest.cs" />
+    <Compile Include="CamBuild.BasicActions\DeleteFileTest.cs" />
+    <Compile Include="CamBuild.BasicActions\ExecuteShellCommandTest.cs" />
+    <Compile Include="CamBuild.BasicActions\WriteConsoleTest.cs" />
+    <Compile Include="CamBuild.BasicFunctions\DateTimeTest.cs" />
+    <Compile Include="CamBuild.BasicFunctions\IncrementedBuildNumberTest.cs" />
+    <Compile Include="CamBuild.CompilerActions\CSharp20CompilerTest.cs" />
+    <Compile Include="CamBuild.CompilerActions\Java15CompilerTest.cs" />
+    <Compile Include="CamBuild.Console\CamBuildConsoleTest.cs" />
+    <Compile Include="CamBuild.Core\ActionPropertySetterTest.cs" />
+    <Compile Include="CamBuild.Core\BuildComponentTest.cs" />
+    <Compile Include="CamBuild.Core\BuildFileElementExecutorTest.cs" />
+    <Compile Include="CamBuild.Core\BuildFileElementParserTest.cs" />
+    <Compile Include="CamBuild.Core\BuildFileTest.cs" />
+    <Compile Include="CamBuild.Core\FunctionStringTest.cs" />
+    <Compile Include="CamBuild.Core\ActionFactoryTest.cs" />
+    <Compile Include="CamBuild.Core\BuildFileElementFactoryTest.cs" />
+    <Compile Include="CamBuild.Core\FunctionFactoryTest.cs" />
+    <Compile Include="Scenario\ScenarioSpitfire.cs" />
+    <Compile Include="Scenario\ScenarioTestTool.cs" />
+    <Compile Include="CamBuild.Core\UtilityTest.cs" />
+    <Compile Include="CamBuild.Core\ValueStringEvaluatorTest.cs" />
+    <Compile Include="CamBuild.Core\ValueStringTokenizerTest.cs" />
+    <Compile Include="CamBuild.Core\XmlFileLoggerTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\CommentReader.cs" />
+    <Compile Include="Utility\CommentReaderTest.cs" />
+    <Compile Include="Utility\TestAction.cs" />
+    <Compile Include="Utility\TestData.cs" />
+    <Compile Include="Utility\TestFunction.cs" />
+    <Compile Include="Utility\TestUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scenario\Spitfire.xml" />
+    <Content Include="Scenario\TestTool.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CamBuild.BasicActions\CamBuild.BasicActions.csproj">
+      <Project>{15C5977E-588E-434F-8851-3DE115A48E2C}</Project>
+      <Name>CamBuild.BasicActions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CamBuild.BasicFunctions\CamBuild.BasicFunctions.csproj">
+      <Project>{17A9CD01-3767-4898-BFDA-22C91E294664}</Project>
+      <Name>CamBuild.BasicFunctions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CamBuild.CompilerActions\CamBuild.CompilerActions.csproj">
+      <Project>{BA34E4BA-3685-46A3-B33B-91FF39F4075D}</Project>
+      <Name>CamBuild.CompilerActions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CamBuild.Console\CamBuild.Console.csproj">
+      <Project>{2E6D0825-36BB-4560-BCAE-E03DF8BFDBF5}</Project>
+      <Name>CamBuild.Console</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CamBuild.Core\CamBuild.Core.csproj">
+      <Project>{A291AB0B-0CC2-4E0B-A56A-A67B8D385D67}</Project>
+      <Name>CamBuild.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>copy CamBuild.Test.dll ..\..\..\CamBuild.Core\bin\debug\CamBuild.Test.dll</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CamBuildProject name="Spitfire" defaultcomponents="">
+
+	<Property name="SourceDir">E:\Alexander\FinalProject\Source\TestProjects\Spitfire</Property>
+	<Property name="OutputDir">C:\Temp\Spitfire</Property>
+
+	<CreateDirectory>
+		<Path>[#OutputDir]</Path>
+	</CreateDirectory>
+
+	<BuildComponent name="Storage">
+		<CSharp20Compiler>
+			<target>library</target>
+			<out>[#OutputDir]\Storage.dll</out>
+			<recurse>"[#SourceDir]\Storage\*.cs"</recurse>
+		</CSharp20Compiler>		
+	</BuildComponent>
+
+	<BuildComponent name="CommandCore" dependencies="Storage">
+		<CSharp20Compiler>
+			<target>library</target>
+			<out>[#OutputDir]\CommandCore.dll</out>
+			<recurse>"[#SourceDir]\CommandCore\*.cs"</recurse>
+			<reference>[#OutputDir]\Storage.dll</reference>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="NetworkModel" dependencies="CommandCore, Storage">
+		<CSharp20Compiler>
+			<target>library</target>
+			<out>[#OutputDir]\NetworkModel.dll</out>
+			<recurse>"[#SourceDir]\NetworkModel\*.cs"</recurse>
+			<reference>[#OutputDir]\CommandCore.dll,[#OutputDir]\Storage.dll</reference>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="Server" dependencies="CommandCore, Storage, NetworkModel">
+		<CSharp20Compiler>
+			<target>winexe</target>
+			<out>[#OutputDir]\Server.exe</out>
+			<recurse>"[#SourceDir]\Server\*.cs"</recurse>
+			<reference>[#OutputDir]\CommandCore.dll,[#OutputDir]\Storage.dll,[#OutputDir]\NetworkModel.dll</reference>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="ClientCache" dependencies="CommandCore, Storage">
+		<CSharp20Compiler>
+			<target>library</target>
+			<out>[#OutputDir]\ClientCache.dll</out>
+			<recurse>"[#SourceDir]\ClientCache\*.cs"</recurse>
+			<reference>[#OutputDir]\CommandCore.dll,[#OutputDir]\Storage.dll</reference>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="MSSQLProvider" dependencies="Storage">
+		<CSharp20Compiler>
+			<target>library</target>
+			<out>[#OutputDir]\MSSQLProvider.dll</out>
+			<recurse>"[#SourceDir]\MSSQLProvider\*.cs"</recurse>
+			<reference>[#OutputDir]\Storage.dll</reference>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="ScmClient" dependencies="CommandCore, Storage, NetworkModel, ClientCache">
+		<CSharp20Compiler>
+			<target>winexe</target>
+			<out>[#OutputDir]\ScmClient.exe</out>
+			<recurse>"[#SourceDir]\ScmClient\*.cs"</recurse>
+			<reference>[#OutputDir]\CommandCore.dll,[#OutputDir]\Storage.dll,[#OutputDir]\NetworkModel.dll,[#OutputDir]\ClientCache.dll,[#SourceDir]\ScmClient\MagicLibrary.dll</reference>
+		</CSharp20Compiler>
+
+		<CopyFile>
+			<Source>[#SourceDir]\ScmClient\MagicLibrary.dll</Source>
+			<Destination>[#OutputDir]\MagicLibrary.dll</Destination>
+			<OverWrite>true</OverWrite>
+		</CopyFile>
+		
+	</BuildComponent>
+	
+	
+</CamBuildProject>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CamBuildProject name="Test Tool" defaultcomponents="TestApplication, JavaApp">
+
+	<Property name="SourceDir">E:\Alexander\FinalProject\Source\TestProjects\TestTool</Property>
+	<Property name="OutputDir">C:\Temp\TestTool</Property>
+
+	<CreateDirectory>
+		<Path>[#OutputDir]</Path>
+	</CreateDirectory>
+
+	<CreateDirectory>
+		<Path>[#OutputDir]\Manual</Path>
+	</CreateDirectory>
+
+	<CopyFile>
+		<Source>[#SourceDir]\Documentation\Manual.doc</Source>
+		<Destination>[#OutputDir]\Manual\Manual.doc</Destination>
+		<OverWrite>true</OverWrite>
+	</CopyFile>
+
+	<BuildComponent name="TestLibrary" description="Component with common functionality">
+		<CSharp20Compiler>
+			<out>"[#OutputDir]\TestLibrary.dll"</out>
+			<target>library</target>
+			<recurse>"[#SourceDir]\Source\TestLibrary\*.cs"</recurse>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="TestApplication" dependencies="TestLibrary" description="GUI for TestTool">
+		<CSharp20Compiler>
+			<out>"[#OutputDir]\TestApplication.exe"</out>
+			<target>exe</target>
+			<recurse>"[#SourceDir]\Source\TestApplication\*.cs"</recurse>
+			<reference>"[#OutputDir]\TestLibrary.dll"</reference>
+		</CSharp20Compiler>
+	</BuildComponent>
+
+	<BuildComponent name="JavaApp" description="Sample Java application">
+		<Java15Compiler>
+			<d>"[#OutputDir]"</d>
+			<SourceFiles>"[#SourceDir]\Source\JavaApp\JavaApp.java"</SourceFiles>
+		</Java15Compiler>
+	</BuildComponent>
+
+</CamBuildProject>
